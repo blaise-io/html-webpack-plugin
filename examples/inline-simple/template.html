@@ -3,9 +3,17 @@
   <head>
     <meta charset="UTF-8">
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <style><%= compilation.assets['styles.css'].source() %></style>
+    <style>
+      <% _(htmlWebpackPlugin.files.css).each(function(cssFile) { %>
+        <%= compilation.assets[cssFile].source() %>
+      <% }) %>
+    </style>
   </head>
   <body>
-        <script><%= compilation.assets['bundle.js'].source() %></script>
+    <script>
+      <% _(htmlWebpackPlugin.files.js).each(function(jsFile) { %>
+        <%= compilation.assets[jsFile].source() %>
+      <% }) %>
+    </script>
   </body>
 </html>
